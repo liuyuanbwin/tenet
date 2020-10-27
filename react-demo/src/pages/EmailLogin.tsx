@@ -1,6 +1,5 @@
-import { Result, Button } from 'antd'
+import { Button } from 'antd'
 import React,{Fragment} from 'react'
-// const { getApp } = require('../utils')
 import { getApp, getDb } from '@/utils'
 const app = getApp()
 let db = getDb()
