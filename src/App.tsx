@@ -1,7 +1,8 @@
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { RenderRoutes, appRoutes } from './routes'
 import { MainLayout } from './layout'
+import { Login } from './pages'
 import 'antd/dist/antd.css'
 import './App.less'
 
@@ -11,7 +12,11 @@ function App() {
   return (
     <div className="App">
       {/* <MainLayout menus={menus}>{RenderRoutes()}</MainLayout> */}
-      {RenderRoutes()}
+      {/* {RenderRoutes()} */}
+      <Switch>
+        <Route key="login" path={'/'} component={Login} exact />
+        <MainLayout menus={menus}>{RenderRoutes()}</MainLayout>
+      </Switch>
     </div>
   )
 }
