@@ -1,5 +1,5 @@
 import { RouteProps } from 'react-router'
-import { NoFoundPage, EmailLogin, Login, Home } from '../pages'
+import { NoFoundPage, Home } from '../pages'
 
 export interface IRouteProps extends RouteProps {
   menu?: boolean
@@ -8,18 +8,13 @@ export interface IRouteProps extends RouteProps {
 
 export const appRoutes: IRouteProps[] = [
   {
-    title: '登陆',
-    path: '/lg',
-    component: EmailLogin,
+    title: '主页',
+    path: '/',
+    component: Home,
     menu: true
   },
   {
-    title: '主页',
-    path: '/home',
-    component: Home
+    path: '**',
+    component: NoFoundPage
   }
-  // {
-  //   path: '**',
-  //   component: NoFoundPage
-  // }
 ]

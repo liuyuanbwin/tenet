@@ -14,7 +14,7 @@ function App() {
       {/* <MainLayout menus={menus}>{RenderRoutes()}</MainLayout> */}
       {/* {RenderRoutes()} */}
       <Switch>
-        <Route key="login" path={'/'} component={Login} exact />
+        <Route key="login" path="/login" component={Login} exact />
         <MainLayout menus={menus}>{RenderRoutes()}</MainLayout>
       </Switch>
     </div>
