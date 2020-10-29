@@ -12,3 +12,10 @@ export const getDb = () => {
   const db = getApp().database()
   return db
 }
+
+export const getAuth = () => {
+  const auth = getApp().auth({
+    persistence:"local"
+  })
+  return auth
+}

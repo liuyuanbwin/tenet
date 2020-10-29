@@ -1,10 +1,16 @@
 import { Button } from 'antd'
 import React,{Fragment} from 'react'
-import { getApp, getDb } from '@/utils'
+import { getApp, getDb, getAuth } from '@/utils'
 const app = getApp()
 let db = getDb()
-export const EmailLogin: React.FC<{}> = () => (
+let auth = getAuth()
+
+export const EmailLogin: React.FC<{}> = () =>{
+  console.log('%cEmailLogin.tsx line:9 auth.hasLoginState()', 'color: #26bfa5;', auth.hasLoginState());
+  
+  return (
   <Fragment>
+    {/* <h1>{JSON.stringify(auth.hasLoginState())}</h1> */}
     <Button onClick={async e=>{
     app
     .auth({persistence: 'local'})
@@ -44,5 +50,6 @@ export const EmailLogin: React.FC<{}> = () => (
       }
     }>查人</Button>
   </Fragment>
-)
+  )
+}
 

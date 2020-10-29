@@ -4,6 +4,10 @@ import { useHistory } from 'react-router'
 import { IRouteProps } from '@/routes/config'
 import { config } from '@/config'
 import './index.less'
+import { getApp, getDb, getAuth } from '@/utils'
+const app = getApp()
+let db = getDb()
+let auth = getAuth()
 
 const { Sider, Header, Content, Footer } = Layout
 
@@ -16,6 +20,11 @@ export function MainLayout(props: React.PropsWithChildren<ILayoutProps>) {
   const { menus } = props
 
   const year = new Date().getFullYear()
+
+  console.log('%cHome.tsx line:11 auth.hasLoginState()', 'color: #26bfa5;', auth.hasLoginState());
+  if(!auth.hasLoginState()){
+    history.push('/')
+  }
 
   return (
     <div className="App">
