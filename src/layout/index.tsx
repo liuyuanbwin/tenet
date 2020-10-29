@@ -4,10 +4,7 @@ import { useHistory } from 'react-router'
 import { IRouteProps } from '@/routes/config'
 import { config } from '@/config'
 import './index.less'
-import { getApp, getDb, getAuth } from '@/utils'
-const app = getApp()
-let db = getDb()
-let auth = getAuth()
+import { db, auth } from '@/utils'
 
 const { Sider, Header, Content, Footer } = Layout
 

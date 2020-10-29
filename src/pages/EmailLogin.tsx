@@ -1,9 +1,7 @@
 import { Button } from 'antd'
 import React,{Fragment} from 'react'
-import { getApp, getDb, getAuth } from '@/utils'
-const app = getApp()
-let db = getDb()
-let auth = getAuth()
+import { auth, db } from '@/utils'
+
 
 export const EmailLogin: React.FC<{}> = () =>{
   console.log('%cEmailLogin.tsx line:9 auth.hasLoginState()', 'color: #26bfa5;', auth.hasLoginState());
@@ -12,8 +10,7 @@ export const EmailLogin: React.FC<{}> = () =>{
   <Fragment>
     {/* <h1>{JSON.stringify(auth.hasLoginState())}</h1> */}
     <Button onClick={async e=>{
-    app
-    .auth({persistence: 'local'})
+    auth
     .signUpWithEmailAndPassword('119077905@qq.com','wolaile1986A')
     .then((res) => {
       // 发送验证邮件成功
@@ -21,9 +18,8 @@ export const EmailLogin: React.FC<{}> = () =>{
     });
     }}>注册</Button>
     <Button onClick={async e =>{
-      app
-      .auth({persistence: 'local'})
-      .signInWithEmailAndPassword('119077905@qq.com','wolaile1986A')
+       auth
+       .signInWithEmailAndPassword('119077905@qq.com','wolaile1986A')
       .then((loginState) => {
         // 登录成功
         console.log('%cEmailLogin.tsx line:25 loginState', 'color: #26bfa5;', loginState);

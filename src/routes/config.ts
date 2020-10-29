@@ -15,7 +15,7 @@ export const appRoutes: IRouteProps[] = [
   },
   {
     title:'Home',
-    path:'/home',
+    path:'/',
     component:Home,
     menu:true
   },
