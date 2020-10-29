@@ -37,7 +37,7 @@ export function MainLayout(props: React.PropsWithChildren<ILayoutProps>) {
             />
           </div>
           <div className="home">
-            <a href="/">Home</a>
+            <a href="/home">Home</a>
           </div>
         </Header>
         <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column' }}>

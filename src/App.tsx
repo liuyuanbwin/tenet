@@ -1,18 +1,22 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import {Redirect} from 'react-router'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { RenderRoutes, appRoutes } from './routes'
 import { MainLayout } from './layout'
+import { Login } from './pages'
 import 'antd/dist/antd.css'
 import './App.less'
-import { NoFoundPage, EmailLogin } from './pages'
 
 const menus = appRoutes.filter((item) => item.menu)
 
 function App() {
   return (
     <div className="App">
-      <MainLayout menus={menus}>{RenderRoutes()}</MainLayout>
+      {/* <MainLayout menus={menus}>{RenderRoutes()}</MainLayout> */}
+      {/* {RenderRoutes()} */}
+      <Switch>
+        <Route key="login" path="/login" component={Login} exact />
+        <MainLayout menus={menus}>{RenderRoutes()}</MainLayout>
+      </Switch>
     </div>
   )
 }
@@ -20,11 +24,7 @@ function App() {
 export default () => {
   return (
     <BrowserRouter>
-      <Switch>
-        {/* <Redirect path="/" to="/login" /> */}
-        <Route key='lll' path={'/'} exact component={EmailLogin} />
-        <App />
-      </Switch>
+      <App />
     </BrowserRouter>
   )
 }

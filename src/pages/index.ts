@@ -1,3 +1,3 @@
-export * from './Home'
-export * from './EmailLogin'
 export * from './404'
+export * from './Login'
+export * from './Home'

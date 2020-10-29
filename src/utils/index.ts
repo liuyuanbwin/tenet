@@ -3,7 +3,7 @@ import cloudbase from '@cloudbase/js-sdk'
 
 export const getApp = () => {
   const app = cloudbase.init({
-    env:config.envId
+    env: config.envId
   })
   return app
 }
@@ -15,7 +15,7 @@ export const getDb = () => {
 
 export const getAuth = () => {
   const auth = getApp().auth({
-    persistence:"local"
+    persistence: 'local'
   })
   return auth
 }
