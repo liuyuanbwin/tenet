@@ -1,8 +1,8 @@
-import { Button } from 'antd'
-import React, { Fragment } from 'react'
-import { db, auth } from '@/utils'
+import React from 'react'
+import { auth } from '@/utils'
 import { useHistory } from 'react-router'
-import Table from '../components/Table'
+import Table from '@/components/Table'
+import {allBs} from '@/apis/b'
 
 export const Home: React.FC<{}> = () => {
   let state = auth.hasLoginState()
@@ -11,6 +11,7 @@ export const Home: React.FC<{}> = () => {
   if (!state) {
     history.push('/login')
   }
+  allBs().then(res => console.log('%cHome.tsx line:14 res', 'color: #26bfa5;', res))
   const dataSource = [
     {
       key: '1',
