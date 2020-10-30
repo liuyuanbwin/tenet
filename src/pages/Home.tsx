@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { auth, db } from '@/utils'
 import { useHistory } from 'react-router'
 import Table from '@/components/Table'
 import { allBs } from '@/apis/b'
 
 export const Home: React.FC<{}> = () => {
-  let state = auth.hasLoginState()
-  let history = useHistory()
-  console.log('%cHome.tsx line:10 state', 'color: #26bfa5;', state)
+  const state = auth.hasLoginState()
+  const history = useHistory()
+
+  const [bs, setBs] = useState([] as any[])
+  
   if (!state) {
     history.push('/login')
   }
@@ -15,45 +17,43 @@ export const Home: React.FC<{}> = () => {
   useEffect(() => {
     const fetchBill = async () => {
       let result = await allBs()
-      console.log(result)
+      console.log('%cHome.tsx line:20 Object', 'color: #26bfa5;', result);
+      setBs(result)
     }
     fetchBill()
   }, [])
 
-  const dataSource = [
-    {
-      key: '1',
-      name: '胡彦斌',
-      age: 32,
-      address: '西湖区湖底公园1号'
-    },
-    {
-      key: '2',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号'
-    }
-  ]
   const columns = [
     {
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name'
+      title: 'no',
+      dataIndex: 'cs',
+      key: 'cs',
+      render:(c:any ={no:''}) =>{
+        return <p>{c[0].no}</p> 
+      }
     },
     {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age'
+      title: 'type',
+      dataIndex: 'type',
+      key: 'type'
     },
     {
-      title: '住址',
-      dataIndex: 'address',
-      key: 'address'
+      title: 'm',
+      dataIndex: 'm',
+      key: 'm'
+    },
+    {
+      title: 'ms',
+      dataIndex: 'ms',
+      key: 'ms',
+      render:(cs:any ={name:''}) =>{
+        return <p>{cs[0].name}</p> 
+      }
     }
   ]
   return (
     <div>
-      <Table columns={columns} dataSource={dataSource} />
+      <Table columns={columns} dataSource={bs} />
     </div>
   )
 }
