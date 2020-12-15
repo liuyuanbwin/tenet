@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Drawer, Button, Row, Col, Descriptions, Badge } from 'antd'
+import { Table, Drawer, Button, Row, Col, Descriptions, Badge, PageHeader } from 'antd'
 import { auth, db } from '@/utils'
 import { useHistory } from 'react-router'
 import { allBs } from '@/apis/b'
@@ -104,6 +104,10 @@ export const Home: React.FC<{}> = () => {
 	}
 	return (
 		<div>
+      <PageHeader
+        onBack={() =>null}
+        title="订单列表"
+      />
 			<Table columns={columns} dataSource={bs} />
 			<Drawer maskClosable width={650} closable={false} onClose={onCloseDetail} visible={billDetailVisible}>
 				<Row>
