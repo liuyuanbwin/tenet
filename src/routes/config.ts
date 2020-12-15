@@ -1,5 +1,5 @@
 import { RouteProps } from 'react-router'
-import { NoFoundPage, Home } from '../pages'
+import { NoFoundPage, Home, Schedule } from '../pages'
 
 export interface IRouteProps extends RouteProps {
   menu?: boolean
@@ -17,6 +17,12 @@ export const appRoutes: IRouteProps[] = [
     path: '/',
     component: Home,
     menu: true
+  },
+  {
+    title:'Schedule',
+    path:'/schedule',
+    component:Schedule,
+    menu:true
   },
   {
     path: '**',

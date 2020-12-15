@@ -72,16 +72,16 @@ export const Home: React.FC<{}> = () => {
 	const DetailItme = () => (
 		<Descriptions title="订单详情" layout="vertical" bordered>
 			<Descriptions.Item label="车牌号码">{detailItem.cs[0].no}</Descriptions.Item>
-			<Descriptions.Item label="Billing Mode">Prepaid</Descriptions.Item>
-			<Descriptions.Item label="Automatic Renewal">YES</Descriptions.Item>
-			<Descriptions.Item label="Order time">2018-04-24 18:00:00</Descriptions.Item>
-			<Descriptions.Item label="Usage Time" span={2}>
+			<Descriptions.Item label="订单类型">Prepaid</Descriptions.Item>
+			<Descriptions.Item label="联系人">YES</Descriptions.Item>
+			<Descriptions.Item label="成交时间">2018-04-24 18:00:00</Descriptions.Item>
+			<Descriptions.Item label="过期时间" span={2}>
 				2019-04-24 18:00:00
 			</Descriptions.Item>
-			<Descriptions.Item label="Status" span={3}>
+			<Descriptions.Item label="车辆状态" span={3}>
 				<Badge status="processing" text="Running" />
 			</Descriptions.Item>
-			<Descriptions.Item label="Negotiated Amount">$80.00</Descriptions.Item>
+			<Descriptions.Item label="订单金额">$80.00</Descriptions.Item>
 			<Descriptions.Item label="Discount">$20.00</Descriptions.Item>
 			<Descriptions.Item label="Official Receipts">$60.00</Descriptions.Item>
 			<Descriptions.Item label="Config Info">

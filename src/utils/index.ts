@@ -17,7 +17,7 @@ export const auth = (() => {
   return auth
 })()
 
-export const _b = db.collection('bs')
-export const _c = db.collection('cs')
-export const _lks = db.collection('lkms')
-export const _Ib = db.collection('Ib') 
+export const _b = db.collection('bs') //订单列表
+export const _c = db.collection('cs') //车辆列表
+export const _lks = db.collection('lkms') //联系人列表
+export const _Ib = db.collection('Ib')  //保险公司列表
