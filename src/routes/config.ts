@@ -7,17 +7,16 @@ export interface IRouteProps extends RouteProps {
 }
 
 export const appRoutes: IRouteProps[] = [
-
   {
     title: 'Not found',
     path: '/nf',
-    component: NoFoundPage,
+    component: NoFoundPage
   },
   {
-    title:'Home',
-    path:'/',
-    component:Home,
-    menu:true
+    title: '订单列表',
+    path: '/',
+    component: Home,
+    menu: true
   },
   {
     path: '**',
