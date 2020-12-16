@@ -40,7 +40,7 @@ export const Home: React.FC<{}> = () => {
 		},
 		{
 			title: '订单金额',
-			dataIndex: 'm',
+			dataIndex: 'price',
 			key: 'm'
 		},
 		{
