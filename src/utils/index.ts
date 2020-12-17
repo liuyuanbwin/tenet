@@ -2,6 +2,7 @@ import { config } from '@/config'
 import cloudbase from '@cloudbase/js-sdk'
 
 export const app = (() => {
+  console.log('%cindex.ts line:5 config', 'color: #26bfa5;', config);
   const app = cloudbase.init({
     env: config.envId
   })
