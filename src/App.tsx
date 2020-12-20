@@ -9,22 +9,22 @@ import './App.less'
 const menus = appRoutes.filter((item) => item.menu)
 
 function App() {
-  return (
-    <div className="App">
-      {/* <MainLayout menus={menus}>{RenderRoutes()}</MainLayout> */}
-      {/* {RenderRoutes()} */}
-      <Switch>
-        <Route key="login" path="/login" component={Login} exact />
-        <MainLayout menus={menus}>{RenderRoutes()}</MainLayout>
-      </Switch>
-    </div>
-  )
+	return (
+		<div className="App">
+			{/* <MainLayout menus={menus}>{RenderRoutes()}</MainLayout> */}
+			{/* {RenderRoutes()} */}
+			<Switch>
+				<Route key="login" path="/login" component={Login} exact />
+				<MainLayout menus={menus}>{RenderRoutes()}</MainLayout>
+			</Switch>
+		</div>
+	)
 }
 
 export default () => {
-  return (
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  )
+	return (
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	)
 }

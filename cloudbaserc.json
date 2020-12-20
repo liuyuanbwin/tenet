@@ -1,15 +1,24 @@
 {
-  "envId": "tenet-server-2gachu80cc2b9f5f",
+  "envId": "tenet-0g1gneu2742043be",
   "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
   "functionRoot": "functions",
-  "functions": [
-    {
+  "functions": [{
       "name": "custom-login",
-      "config": { "timeout": 5, "envVariables": {}, "runtime": "Nodejs10.15", "memorySize": 128 }
+      "config": {
+        "timeout": 5,
+        "envVariables": {},
+        "runtime": "Nodejs10.15",
+        "memorySize": 128
+      }
     },
     {
       "name": "base64",
-      "config": { "timeout": 5, "envVariables": {}, "runtime": "Nodejs10.15", "memorySize": 128 }
+      "config": {
+        "timeout": 5,
+        "envVariables": {},
+        "runtime": "Nodejs10.15",
+        "memorySize": 128
+      }
     }
   ],
   "framework": {
@@ -30,7 +39,9 @@
       "db": {
         "use": "@cloudbase/framework-plugin-database",
         "inputs": {
-          "collections": [{ "collectionName": "demo_web" }]
+          "collections": [{
+            "collectionName": "demo_web"
+          }]
         }
       }
     }
