@@ -23,7 +23,7 @@ import './createBillModal.less'
 const { Step } = Steps
 
 const CreateBillModal = (props: any) => {
-	const [ step, setStep ] = useState(0) //  0 选择车辆,3 订单配置 , 1选择联系人,4 订单生成
+	const [ step, setStep ] = useState(0) //  0 选择车辆,1 订单配置 , 2选择联系人,3 订单生成
 	const [ carOptions, setCarOptions ] = useState<{ value: string }[]>([])
 	const [ car, setCar ] = useState<any>({})
   const [ corporates, setCorporates ] = useState<{ _id: string; name: string }[]>([])
@@ -56,7 +56,8 @@ const CreateBillModal = (props: any) => {
   }
   
   const onFinish = (values:any) => {
-    console.log('%ccreateBillModal.tsx line:59 values', 'color: #26bfa5;', values);
+		console.log('%ccreateBillModal.tsx line:59 values', 'color: #26bfa5;', values);
+		setStep(2)
   }
 	return (
 		<Modal
@@ -150,6 +151,21 @@ const CreateBillModal = (props: any) => {
           <Button type="primary" onClick={e=>form.submit()}>下一步</Button>
           </>
 				)}
+				{step === 2 &&(
+					<>
+					<h1>选择联系人</h1>
+					<AutoComplete
+							dropdownMatchSelectWidth={252}
+							style={{ width: 300 }}
+							options={carOptions}
+							onSelect={onCarSelect}
+							onSearch={onHandleCarSearch}
+						>
+							<Input.Search size="middle" placeholder="input here" enterButton />
+						</AutoComplete>
+					</>
+				)
+				}
 			</div>
 		</Modal>
 	)
