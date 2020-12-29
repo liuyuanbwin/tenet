@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import React, { Fragment } from 'react'
-import { db, auth } from '@/utils'
+// import { app } from '@/utils'
 import cloudbase from "@cloudbase/js-sdk";
 
 const app = cloudbase.init({
@@ -20,12 +20,11 @@ export const Login: React.FC<{}> = () => {
         // auth.signUpWithEmailAndPassword('119077906@qq.com', 'wolaile1986A').then((res) => {
         //   console.log('%cLogin.tsx line:11 Object', 'color: #26bfa5;', res);
         // });
-          // auth
-          // .signInWithEmailAndPassword('119077906@qq.com', 'wolaile1986A')
-          // .then((loginState) => {
-          //   // 邮箱密码登录成功
-          //   console.log(loginState)
-          // })
+        // let auth = app.auth({ persistence: 'local' }).signInWithEmailAndPassword('119077906@qq.com', 'wolaile1986A')
+        //   .then((loginState) => {
+        //     // 邮箱密码登录成功
+        //     console.log(loginState)
+        //   })
       }}
     >
       登录

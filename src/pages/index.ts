@@ -1,4 +1,4 @@
 export * from './404'
-export * from './Login'
-export * from './Home'
+export * from './Login/Login'
+export * from './Home/Home'
 export * from './Schedule'
