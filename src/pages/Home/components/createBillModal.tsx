@@ -1,23 +1,19 @@
 import React, { useState, useEffect, Fragment } from 'react'
+import moment from 'moment'
 import {
   Modal,
   Steps,
   AutoComplete,
   Input,
-  Divider,
   Descriptions,
   Button,
-  InputNumber,
   Form,
-  TreeSelect,
   Select,
-  Cascader,
   DatePicker,
-  Switch,
-  Radio
 } from 'antd'
 import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons'
-import { getMatchCar, getMatchLinkman, getCorporates } from '@/utils/index'
+import CreateCarModal from '@/components/CreateCarModal'
+import { getMatchCar, getMatchLinkman, getCorporates ,createBill} from '@/utils/index'
 import { billTypes } from '@/utils/string'
 import './createBillModal.less'
 const { Step } = Steps
@@ -30,6 +26,8 @@ const CreateBillModal = (props: any) => {
 	const [linkman, setLinkman] = useState<any>({})
 	const [billInfo, setBillInfo] = useState<any>({})
   const [corporates, setCorporates] = useState<{ _id: string; name: string }[]>([])
+
+  const [createCar, setCreateCar] = useState(false);
 
   const [form] = Form.useForm()
 
@@ -51,7 +49,7 @@ const CreateBillModal = (props: any) => {
   }
   const onHandleCarSearch = async (e: any) => {
     if (e === '') return
-    let result = await getMatchCar(e + '')
+    let result = await getMatchCar(String(e))
     result.data = result.data.map((car: any) => {
       car.value = `${car.no} / ${car.brand} / ${car.model}`
       return car
@@ -61,7 +59,7 @@ const CreateBillModal = (props: any) => {
 
   const onHandleLinkmanSearch = async (e: any) => {
 		if (e === '') return
-    let result = await getMatchLinkman(e + '')
+    let result = await getMatchLinkman(String(e))
     result.data = result.data.map((linkman: any) => {
       linkman.value = linkman.name + '/' + linkman.tel
       return linkman
@@ -80,14 +78,15 @@ const CreateBillModal = (props: any) => {
 		let tempBillInfo = {
 			car_id:car._id,
 			create_date:new Date(),
-			expire_date:billInfo.expire_date,
+			expire_date:billInfo.expire_date.format(),
 			insurancebrand_id:billInfo.corporate,
 			linkman_ids:[linkman._id],
 			price:billInfo.price,
 			type:billInfo.type,
-			valid_date:billInfo.valid_date
+			valid_date:billInfo.valid_date.format()
 		}
-		console.log('%ccreateBillModal.tsx line:90 tempBillInfo', 'color: #26bfa5;', tempBillInfo);
+    console.log('%ccreateBillModal.tsx line:90 tempBillInfo', 'color: #26bfa5;', tempBillInfo);
+    createBill(tempBillInfo)
 	}
   return (
     <Modal
@@ -115,7 +114,10 @@ const CreateBillModal = (props: any) => {
               onSearch={onHandleCarSearch}
             >
               <Input.Search size="middle" placeholder="输入车牌号" enterButton />
+              
             </AutoComplete>
+            <Button onClick={()=>setCreateCar(true)}>新建</Button>
+              {createCar && <CreateCarModal onClose={()=>setCreateCar(false)}/>}
             {car.no && (
               <div className="car-info-container">
                 <Descriptions column={2} title="车辆信息">
@@ -193,9 +195,11 @@ const CreateBillModal = (props: any) => {
             >
               <Input.Search size="middle" placeholder="输入姓名查询" enterButton />
             </AutoComplete>
+            <div>
             <Button type="primary" onClick={onCreateBill}>
               完成
             </Button>
+            </div>
           </>
         )}
       </div>
