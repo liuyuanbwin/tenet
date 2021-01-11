@@ -63,6 +63,8 @@ export default ({onClose}) => {
 			okText="确认"
 			cancelText="取消"
 			onOk={onHandleCreateCar}
+			closable
+			onCancel={()=>onClose('')}
 		>
 			<div className="create-car-body">
 				<Form form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 14 }} onFinish={() => {}}>
@@ -114,9 +116,9 @@ export default ({onClose}) => {
 				</Form>
 				{JSON.stringify(matchlinkmans)}
 				<Button onClick={() => setCreateLinkman(true)}>添加用户</Button>
-				{createLinkman && <CreateLinkmanModal onClose={(id)=>{
+				{createLinkman && <CreateLinkmanModal onClose={(id='')=>{
           setCreateLinkman(false)
-          form.setFieldsValue({linkman_ids:[id]})
+          if(id) form.setFieldsValue({linkman_ids:[id]})
           }}/>}
 			</div>
 		</Modal>

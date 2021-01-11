@@ -11,6 +11,7 @@
     "react-scripts": "3.4.1",
     "typescript": "^3.9.6"
   },
+  "homepage": ".",
   "scripts": {
     "dev": "react-app-rewired start",
     "build": "react-app-rewired build",

@@ -27,9 +27,18 @@ export const Home: React.FC<{}> = () => {
 			setBs(data)
 		}
 		fetchBill()
-	}, [])
+	}, [createBillModalVisible])
 
 	const columns = [
+		{
+			title:'到期时间',
+			width:200,
+			dataIndex:'expire_date',
+			key:'expire_date',
+			render:(text:string, record:any, index:number) => {
+				return (<p key={index}>{dateStr(record.expire_date)}</p>)
+			}
+		},
 		{
 			title: '车牌号',
 			dataIndex: '_id',

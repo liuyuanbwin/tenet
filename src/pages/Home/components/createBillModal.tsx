@@ -10,6 +10,7 @@ import {
   Form,
   Select,
   DatePicker,
+  message,
 } from 'antd'
 import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons'
 import CreateCarModal from '@/components/CreateCarModal'
@@ -51,7 +52,7 @@ const CreateBillModal = (props: any) => {
     if (e === '') return
     let result = await getMatchCar(String(e))
     result.data = result.data.map((car: any) => {
-      car.value = `${car.no} / ${car.brand} / ${car.model}`
+      car.value = `${car.no} / ${car.brand || '--'} / ${car.model || '--'}`
       return car
     })
     setCarOptions(result.data)
@@ -73,7 +74,7 @@ const CreateBillModal = (props: any) => {
 		setStep(2)
 	}
 	
-	const onCreateBill = () =>{
+	const onCreateBill = async () =>{
 	//	console.log('%ccreateBillModal.tsx line:78 car , billInfo, linkman', 'color: #26bfa5;', car , billInfo, linkman);
 		let tempBillInfo = {
 			car_id:car._id,
@@ -86,7 +87,11 @@ const CreateBillModal = (props: any) => {
 			valid_date:billInfo.valid_date.format()
 		}
     console.log('%ccreateBillModal.tsx line:90 tempBillInfo', 'color: #26bfa5;', tempBillInfo);
-    createBill(tempBillInfo)
+    let result = await createBill(tempBillInfo)
+    if(result.id){
+      message.success('新建订单成功')
+    }
+    props.onClose()
 	}
   return (
     <Modal

@@ -35,6 +35,8 @@ export default ({onClose}) => {
 			okText="确认"
 			cancelText="取消"
 			onOk={onHandleCreateLinkman}
+			closable
+			onCancel={()=>onClose()}
 		>
 			<div className="create-linkman-body">
 				<Form form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 14 }} onFinish={() => {}}>
