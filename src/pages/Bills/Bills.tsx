@@ -4,9 +4,9 @@ import { useHistory } from 'react-router'
 import { loginState, getBills } from '@/utils/index'
 import { billTypes, vehicleType, billTypeTitle } from '@/utils/string'
 import { dateStr } from '@/utils/date'
-import { CreateBillModal } from './components/createBillModal'
+import { CreateBillModal } from '../../components/components/createBillModal'
 
-export const Home: React.FC<{}> = () => {
+export const Bills: React.FC<{}> = () => {
 	const [logState, setLogState] = useState(true as any) //
 	const [createBillModalVisible, setCreateBillModalVisible] = useState(false)
 	const history = useHistory()

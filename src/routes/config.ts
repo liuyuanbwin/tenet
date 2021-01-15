@@ -1,5 +1,5 @@
 import { RouteProps } from 'react-router'
-import { NoFoundPage, Home, Schedule } from '../pages'
+import { NoFoundPage, Bills, Schedule } from '../pages'
 
 export interface IRouteProps extends RouteProps {
 	menu?: boolean
@@ -15,7 +15,19 @@ export const appRoutes: IRouteProps[] = [
 	{
 		title: '订单列表',
 		path: '/',
-		component: Home,
+		component: Bills,
+		menu: true
+	},
+	{
+		title: '车辆列表',
+		path: '/vehicles',
+		component: Bills,
+		menu: true
+	},
+	{
+		title: '联系人列表',
+		path: '/linkmans',
+		component: Bills,
 		menu: true
 	},
 	{
@@ -24,6 +36,7 @@ export const appRoutes: IRouteProps[] = [
 		component: Schedule,
 		menu: true
 	},
+
 	{
 		path: '**',
 		component: NoFoundPage
