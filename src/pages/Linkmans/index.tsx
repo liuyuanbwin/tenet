@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Drawer, Button, Row, Col, Descriptions, Badge, PageHeader } from 'antd'
 import { useHistory } from 'react-router'
-import { loginState, getCars } from '@/utils/index'
+import { loginState, getLinkmans } from '@/utils/index'
 import { billTypes, vehicleType, billTypeTitle } from '@/utils/string'
 import { dateStr } from '@/utils/date'
-import CreateCarModal from '@/components/CreateCarModal'
+import CreateLinkmanModal from '@/components/CreateLinkmanModal'
 
-export const Vehicles: React.FC<{}> = () => {
+export const Linkmans: React.FC<{}> = () => {
 	const [ logState, setLogState ] = useState(true as any) //
 	const [ createCarModalVisible, setCreateCarModalVisible ] = useState(false)
 	const history = useHistory()
@@ -23,7 +23,7 @@ export const Vehicles: React.FC<{}> = () => {
 			}
 			getState()
 			const fetchCars = async () => {
-				let data = (await getCars({})) || {}
+				let data = (await getLinkmans({})) || {}
 				console.log('%cerror data line:22 ', 'color: red; display: block; width: 100%;', data)
 				setCars(data)
 			}
@@ -35,39 +35,28 @@ export const Vehicles: React.FC<{}> = () => {
 
 	const columns = [
 		{
-			title: '车牌号',
+			title: '姓名',
 			width: 200,
-			dataIndex: 'no',
-			key: 'no',
+			dataIndex: 'name',
+			key: 'name',
 			render: (text: string, record: any, index: number) => {
-				return <p key={index}>{record.no}</p>
+				return <p key={index}>{record.name}</p>
 			}
 		},
 		{
-			title: '品牌',
-			dataIndex: 'brand',
-			key: 'brand',
+			title: '电话',
+			dataIndex: 'tel',
+			key: 'tel',
 			render: (text: any, record: any, index: any) => {
-				return <p key={index}>{record.brand||'-'}</p>
+				return <p key={index}>{record.tel||'-'}</p>
 			}
 		},
 		{
-			title: '型号',
-			dataIndex: 'model',
-			key: 'model',
+			title: '性别',
+			dataIndex: 'sex',
+			key: 'sex',
 			render: (text: any, record: any) => {
-				return <p>{record.model||'-'}</p>
-			}
-		},
-		{
-			title: '联系人',
-			dataIndex: 'ms',
-			key: 'ms',
-			render: (text: any, record: any, index: any) => {
-				if (!record.linkmans || !record.linkmans.length) {
-					return <p key={index}>-</p>
-				}
-				return <p key={index}>{record.linkmans[0].name}</p>
+				return <p>{record.sex||'-'}</p>
 			}
 		},
 		{
@@ -137,14 +126,14 @@ export const Vehicles: React.FC<{}> = () => {
 		<div>
 			<PageHeader
 				onBack={() => null}
-				title="车辆列表"
+				title="联系人列表"
 				extra={[
 					<Button key="1"
 						onClick={() => {
 							setCreateCarModalVisible(true)
 						}}
 					>
-						录入车辆
+						录入联系人
 					</Button>
 				]}
 			/>
@@ -156,7 +145,7 @@ export const Vehicles: React.FC<{}> = () => {
 					</Col>
 				</Row>
 			</Drawer>
-			{createCarModalVisible && <CreateCarModal onClose={() => setCreateCarModalVisible(false)} />}
+			{createCarModalVisible && <CreateLinkmanModal onClose={() => setCreateCarModalVisible(false)} />}
 		</div>
 	)
 }

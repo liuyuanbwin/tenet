@@ -1,4 +1,6 @@
 export * from './404'
 export * from './Login/Login'
 export * from './Bills/Bills'
+export * from './Vehicles/index'
 export * from './Schedule'
+export * from './Linkmans/index'

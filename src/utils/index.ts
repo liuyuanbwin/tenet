@@ -65,13 +65,37 @@ const getCars = (query: any): Promise<any> => {
 			.where(query)
 			.get()
 			.then((res) => {
-				resolve(res)
+				if (res.data) {
+					const getLinkmanInfo = async () => {
+						let tempCars = []
+						for (let i = 0; i < res.data.length; i++) {
+							let car = res.data[i]
+							let templinkmans = []
+							if (car.linkman_ids) {
+								for (let j = 0; j < car.linkman_ids.length; j++) {
+									let tempLinkman = await linkmans.doc(car.linkman_ids[j]).get()
+									if (tempLinkman.data && tempLinkman.data.length) {
+										templinkmans.push(tempLinkman.data[0])
+									}
+								}
+							}
+
+							car.linkmans = templinkmans
+							tempCars.push(car)
+						}
+						resolve(tempCars)
+					}
+					getLinkmanInfo()
+				} else {
+					resolve([])
+				}
 			})
 			.catch((err) => {
 				reject(err)
 			})
 	})
 }
+
 // 模糊搜索车辆
 const getMatchCar = (reg: string): Promise<any> => {
 	const R = db.RegExp as any
@@ -130,7 +154,7 @@ const getLinkmans = (query: any): Promise<any> => {
 			.where(query)
 			.get()
 			.then((res) => {
-				resolve(res)
+				resolve(res.data)
 			})
 			.catch((err) => {
 				reject(err)
@@ -216,10 +240,22 @@ export {
 	emailLogin,
 	loginState,
 	getBills,
+	getCars,
 	getMatchCar,
 	getMatchLinkman,
 	getCorporates,
 	createBill,
 	createCar,
-	createLinkman
+  createLinkman,
+  getLinkmans
 }
+//   brand: "nissan"
+// check_date: {$date: 1443698575000}
+// create_date: {$date: 1608204257064}
+// engine_no: "000000"
+// frame_no: "111111"
+// linkman_ids: ["1"]
+// model: "teana"
+// no: "京A888888"
+// owner_id: "85ff8afa5fdb3f5d000eaf427a9a34c2"
+// type: "under5"
